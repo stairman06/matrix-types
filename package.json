@@ -1,10 +1,6 @@
 {
   "scripts": {
-    "build": "tsc",
-    "test": "npm run build && tsd"
-  },
-  "tsd": {
-    "directory": "tests"
+    "build": "tsc"
   },
   "devDependencies": {
     "typescript": "^4.4.3"
