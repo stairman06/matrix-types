@@ -1,3 +1,5 @@
+export type EncryptionAlgorithm = 'curve25519' | 'signed_curve25519';
+
 /**
  * Matrix encrypted file type, used in message events
  */
