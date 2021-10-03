@@ -59,4 +59,11 @@ export type StrippedStateEvent = StateEvent & {
   sender: string;
 };
 
+// TODO move somewhere else
+export interface Signatures {
+  [server: string]: {
+    [alg: string]: string;
+  };
+}
+
 export * from './modules/messaging';

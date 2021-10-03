@@ -1,4 +1,9 @@
-import { EventsHolder, MatrixEventBase, MatrixEventType } from '../../events';
+import {
+  EventsHolder,
+  MatrixEventBase,
+  MatrixEventType,
+  Signatures,
+} from '../../events';
 import { RoomVersion } from '../rooms';
 
 export type Events = EventsHolder<
@@ -29,13 +34,6 @@ interface InviteSigned {
   mxid: string;
   signatures: Signatures;
   token: string;
-}
-
-// TODO move somewhere else
-interface Signatures {
-  [h: string]: {
-    [alg: string]: string;
-  };
 }
 
 export type RoomCreateEvent = MatrixEventBase<
