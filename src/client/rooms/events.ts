@@ -1,11 +1,10 @@
-import { MatrixEventBase, MatrixEventType } from '../../events';
+import { EventsHolder, MatrixEventBase, MatrixEventType } from '../../events';
 import { RoomVersion } from '../rooms';
 
-export type Events =
-  | MembershipEvent
-  | RoomCreateEvent
-  | JoinRulesEvent
-  | PowerLevelsEvent;
+export type Events = EventsHolder<
+  never,
+  MembershipEvent | RoomCreateEvent | JoinRulesEvent | PowerLevelsEvent
+>;
 
 export type MembershipEvent = MatrixEventBase<
   'm.room.member',

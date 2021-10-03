@@ -1,12 +1,10 @@
-import { MatrixEventBase } from '../events';
+import { EventsHolder, MatrixEventBase } from '../events';
 import { EncryptedFile } from './crypto';
 
-export type Events =
-  | MessageEvent
-  | RoomNameEvent
-  | RoomTopicEvent
-  | RoomAvatarEvent
-  | RoomPinsEvent;
+export type Events = EventsHolder<
+  MessageEvent,
+  RoomNameEvent | RoomTopicEvent | RoomAvatarEvent | RoomPinsEvent
+>;
 
 /**
  * An `m.room.message` event

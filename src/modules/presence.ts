@@ -1,6 +1,6 @@
-import { MatrixEventBase } from '../events';
+import { EventsHolder, MatrixEventBase } from '../events';
 
-export type Events = PresenceEvent;
+export type Events = EventsHolder<PresenceEvent>;
 
 export type PresenceEvent = MatrixEventBase<'m.presence', PresenceEventContent>;
 

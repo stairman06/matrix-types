@@ -1,6 +1,6 @@
-import { MatrixEventBase } from '../events';
+import { EventsHolder, MatrixEventBase } from '../events';
 
-export type Events = TypingEvent;
+export type Events = EventsHolder<TypingEvent>;
 
 export type TypingEvent = MatrixEventBase<'m.typing', TypingEventContent>;
 
