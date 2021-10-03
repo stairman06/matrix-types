@@ -8,13 +8,6 @@ export type Events =
   | RoomAvatarEvent
   | RoomPinsEvent;
 
-export type EventContents =
-  | MessageEventContent
-  | RoomNameEventContent
-  | RoomTopicEventContent
-  | RoomAvatarEventContent
-  | RoomPinsEventContent;
-
 /**
  * An `m.room.message` event
  * https://spec.matrix.org/unstable/client-server-api/#instant-messaging

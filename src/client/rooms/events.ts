@@ -1,12 +1,11 @@
-import { MatrixEventBase } from '../../events';
-import { RoomVersions } from '../rooms';
+import { MatrixEventBase, MatrixEventType } from '../../events';
+import { RoomVersion } from '../rooms';
 
-export type Events = MembershipEvent | RoomCreateEvent | JoinRulesEvent;
-
-export type EventContents =
-  | MembershipEventContent
-  | RoomCreateEventContent
-  | JoinRulesEventContent;
+export type Events =
+  | MembershipEvent
+  | RoomCreateEvent
+  | JoinRulesEvent
+  | PowerLevelsEvent;
 
 export type MembershipEvent = MatrixEventBase<
   'm.room.member',
@@ -49,7 +48,7 @@ export interface RoomCreateEventContent {
   creator: string;
   'm.federate'?: boolean;
   predecessor?: Predecessor;
-  room_version?: RoomVersions;
+  room_version?: RoomVersion;
 }
 
 interface Predecessor {
@@ -67,3 +66,27 @@ export interface JoinRulesEventContent {
 }
 
 export type JoinRule = 'public' | 'knock' | 'invite' | 'private';
+
+export type PowerLevelsEvent = MatrixEventBase<
+  'm.room.power_levels',
+  PowerLevelsEventContent
+>;
+
+export interface PowerLevelsEventContent {
+  ban?: number;
+  events?: PowerLevelsEventMap;
+  events_default?: number;
+  invite?: number;
+  kick?: number;
+  notifications?: {
+    room?: number;
+  };
+  redact?: number;
+  state_default?: number;
+  users?: Record<string, number>;
+  users_default?: number;
+}
+
+type PowerLevelsEventMap = {
+  [t in MatrixEventType]?: number;
+};

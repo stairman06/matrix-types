@@ -2,8 +2,6 @@ import { MatrixEventBase } from '../events';
 
 export type Events = PresenceEvent;
 
-export type EventContents = PresenceEventContent;
-
 export type PresenceEvent = MatrixEventBase<'m.presence', PresenceEventContent>;
 
 export interface PresenceEventContent {
