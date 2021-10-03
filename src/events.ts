@@ -3,6 +3,7 @@ import * as Typing from './modules/typing';
 import * as Presence from './modules/presence';
 import * as RoomEvents from './client/rooms/events';
 import * as E2EE from './modules/e2ee/events';
+import * as Verification from './modules/e2ee/verification';
 
 /**
  * A holder for events
@@ -28,7 +29,8 @@ type EventHolders =
   | Typing.Events
   | Presence.Events
   | RoomEvents.Events
-  | E2EE.Events;
+  | E2EE.Events
+  | Verification.Events;
 
 export interface MatrixEventBase<T extends string, C extends any> {
   type: T;
