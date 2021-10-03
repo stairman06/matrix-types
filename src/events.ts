@@ -2,6 +2,7 @@ import * as Messaging from './modules/messaging';
 import * as Typing from './modules/typing';
 import * as Presence from './modules/presence';
 import * as RoomEvents from './client/rooms/events';
+import * as E2EE from './modules/e2ee/events';
 
 /**
  * A holder for events
@@ -26,7 +27,8 @@ type EventHolders =
   | Messaging.Events
   | Typing.Events
   | Presence.Events
-  | RoomEvents.Events;
+  | RoomEvents.Events
+  | E2EE.Events;
 
 export interface MatrixEventBase<T extends string, C extends any> {
   type: T;

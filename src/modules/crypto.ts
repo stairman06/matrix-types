@@ -1,4 +1,8 @@
 export type EncryptionAlgorithm = 'curve25519' | 'signed_curve25519';
+// TODO bad title
+export type MatrixEncryptionAlgorithm =
+  | 'm.olm.v1.curve25519-aes-sha2'
+  | 'm.megolm.v1.aes-sha2';
 
 /**
  * Matrix encrypted file type, used in message events
