@@ -1,20 +1,21 @@
 import * as Messaging from './modules/messaging';
+import * as Typing from './modules/typing';
+import * as RoomEvents from './client/rooms/events';
 
 export interface MatrixEventBase<T extends string, C extends any> {
   type: T;
   content: C;
 }
 
-export type EventMap = {
-  'm.room.message': Messaging.MessageEvent;
-};
-
-export type MatrixEventContent = Messaging.MessageEventContent;
+export type MatrixEventContent =
+  | Messaging.EventContents
+  | RoomEvents.EventContents
+  | Typing.EventContents;
 
 /**
  * Basic Matrix event. Includes ONLY `type` and `content` fields.
  */
-export type MatrixEvent = Messaging.MessageEvent;
+export type MatrixEvent = Messaging.Events | RoomEvents.Events | Typing.Events;
 
 export type ToDeviceEvent = MatrixEvent & {
   sender?: string;

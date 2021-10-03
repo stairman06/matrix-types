@@ -1,6 +1,20 @@
 import { MatrixEventBase } from '../events';
 import { EncryptedFile } from './crypto';
 
+export type Events =
+  | MessageEvent
+  | RoomNameEvent
+  | RoomTopicEvent
+  | RoomAvatarEvent
+  | RoomPinsEvent;
+
+export type EventContents =
+  | MessageEventContent
+  | RoomNameEventContent
+  | RoomTopicEventContent
+  | RoomAvatarEventContent
+  | RoomPinsEventContent;
+
 /**
  * An `m.room.message` event
  * https://spec.matrix.org/unstable/client-server-api/#instant-messaging
@@ -109,6 +123,8 @@ interface ImageInfo extends InfoBase {
   w?: number;
   h?: number;
   size?: number;
+
+  mimetype?: ImageMimetype;
 }
 
 /**
@@ -193,3 +209,40 @@ export type MessageEventContent =
   | AudioContent
   | VideoContent
   | LocationContent;
+
+export type RoomNameEvent = MatrixEventBase<
+  'm.room.name',
+  RoomNameEventContent
+>;
+
+export interface RoomNameEventContent {
+  name: string;
+}
+
+export type RoomTopicEvent = MatrixEventBase<
+  'm.room.topic',
+  RoomTopicEventContent
+>;
+
+export interface RoomTopicEventContent {
+  topic: string;
+}
+
+export type RoomAvatarEvent = MatrixEventBase<
+  'm.room.avatar',
+  RoomAvatarEventContent
+>;
+
+export interface RoomAvatarEventContent {
+  info?: ImageInfo;
+  url: string;
+}
+
+export type RoomPinsEvent = MatrixEventBase<
+  'm.room.pinned_events',
+  RoomPinsEventContent
+>;
+
+export interface RoomPinsEventContent {
+  pinned: string[];
+}

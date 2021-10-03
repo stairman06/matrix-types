@@ -126,7 +126,7 @@ interface KnockedRoom {
 }
 
 interface KnockState {
-  events?: StrippedStateEvent;
+  events?: StrippedStateEvent[];
 }
 
 interface LeftRoom {
