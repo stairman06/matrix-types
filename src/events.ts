@@ -55,6 +55,10 @@ export type ToDeviceEvent = MatrixEvent & {
   sender?: string;
 };
 
+export type StateEventType = MatrixStateEventBase['type'];
+export type StateEventMap = {
+  [t in StateEventType]: Extract<EventHolders['state'], { type: t }>;
+};
 export type StateEvent = MatrixStateEventBase & {
   state_key: string;
 };

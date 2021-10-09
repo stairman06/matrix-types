@@ -4,7 +4,7 @@ import {
   MatrixEventType,
   Signatures,
 } from '../../events';
-import { RoomVersion } from '../rooms';
+import { RoomType, RoomVersion } from '../../rooms';
 
 export type Events = EventsHolder<
   never,
@@ -43,6 +43,7 @@ export type RoomCreateEvent = MatrixEventBase<
 
 export interface RoomCreateEventContent {
   creator: string;
+  type?: RoomType;
   'm.federate'?: boolean;
   predecessor?: Predecessor;
   room_version?: RoomVersion;

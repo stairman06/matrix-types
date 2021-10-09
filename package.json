@@ -1,4 +1,6 @@
 {
+  "name": "matrix-types",
+  "private": true,
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc"

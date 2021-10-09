@@ -1,6 +1,6 @@
 import { StateEvent } from '../../events';
 import { ThreePidMedium } from '../account/threepid';
-import { RoomVersion } from '../rooms';
+import { RoomVersion } from '../../rooms';
 import { PowerLevelsEventContent } from './events';
 
 export type CreateRoomPreset =

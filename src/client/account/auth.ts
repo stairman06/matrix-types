@@ -7,7 +7,7 @@ import { ThreePidMedium } from './threepid';
  * https://spec.matrix.org/unstable/client-server-api/#get_matrixclientr0login
  */
 export interface GetLoginFlowsResponse {
-  flows?: LoginFlow;
+  flows?: LoginFlow[];
 }
 
 type LoginType =
