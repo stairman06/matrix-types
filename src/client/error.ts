@@ -16,4 +16,5 @@ export type MatrixErrorCode =
   | 'M_MISSING_TOKEN'
   | 'M_BAD_JSON'
   | 'M_NOT_JSON'
-  | 'M_UNKNOWN';
+  | 'M_UNKNOWN'
+  | 'M_UNRECOGNIZED';

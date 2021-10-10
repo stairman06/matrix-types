@@ -2,6 +2,7 @@ import {
   EventsHolder,
   MatrixEventBase,
   MatrixEventType,
+  MatrixStateEventBase,
   Signatures,
 } from '../../events';
 import { RoomType, RoomVersion } from '../../rooms';
@@ -11,7 +12,7 @@ export type Events = EventsHolder<
   MembershipEvent | RoomCreateEvent | JoinRulesEvent | PowerLevelsEvent
 >;
 
-export type MembershipEvent = MatrixEventBase<
+export type MembershipEvent = MatrixStateEventBase<
   'm.room.member',
   MembershipEventContent
 >;
@@ -36,7 +37,7 @@ interface InviteSigned {
   token: string;
 }
 
-export type RoomCreateEvent = MatrixEventBase<
+export type RoomCreateEvent = MatrixStateEventBase<
   'm.room.create',
   RoomCreateEventContent
 >;
@@ -54,18 +55,32 @@ interface Predecessor {
   room_id: string;
 }
 
-export type JoinRulesEvent = MatrixEventBase<
+export type JoinRulesEvent = MatrixStateEventBase<
   'm.room.join_rules',
   JoinRulesEventContent
 >;
 
-export interface JoinRulesEventContent {
-  join_rule: JoinRule;
+interface BasicJoinRule {
+  join_rule: 'public' | 'knock' | 'invite' | 'private';
 }
+
+// TODO: Restricted rules are specified via
+// https://github.com/matrix-org/matrix-doc/blob/main/proposals/3083-restricted-rooms.md
+interface RestrictedJoinRule {
+  join_rule: 'restricted';
+  allow?: RestrictedRule[];
+}
+
+interface RestrictedRule {
+  type: 'm.room_membership';
+  room_id: string;
+}
+
+export type JoinRulesEventContent = BasicJoinRule | RestrictedJoinRule;
 
 export type JoinRule = 'public' | 'knock' | 'invite' | 'private';
 
-export type PowerLevelsEvent = MatrixEventBase<
+export type PowerLevelsEvent = MatrixStateEventBase<
   'm.room.power_levels',
   PowerLevelsEventContent
 >;

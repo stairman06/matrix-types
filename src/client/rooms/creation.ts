@@ -1,7 +1,7 @@
-import { StateEvent } from '../../events';
 import { ThreePidMedium } from '../account/threepid';
 import { RoomVersion } from '../../rooms';
 import { PowerLevelsEventContent } from './events';
+import { MatrixStateEvent } from '../../events';
 
 export type CreateRoomPreset =
   | 'private_chat'
@@ -17,7 +17,7 @@ export type RoomVisibility = 'public' | 'private';
  */
 export interface CreateRoomRequest {
   creation_content?: CreationContent;
-  initial_state?: StateEvent[];
+  initial_state?: MatrixStateEvent[];
   invite?: string[];
   invite_3pid?: Invite3pid[];
   is_direct?: boolean;

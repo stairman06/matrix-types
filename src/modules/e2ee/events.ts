@@ -1,4 +1,8 @@
-import { EventsHolder, MatrixEventBase } from '../../events';
+import {
+  EventsHolder,
+  MatrixEventBase,
+  MatrixStateEventBase,
+} from '../../events';
 import { MatrixEncryptionAlgorithm } from '../crypto';
 import { WithheldCode } from './keys';
 
@@ -11,7 +15,7 @@ export type Events = EventsHolder<
   RoomEncryptionEvent
 >;
 
-export type RoomEncryptionEvent = MatrixEventBase<
+export type RoomEncryptionEvent = MatrixStateEventBase<
   'm.room.encryption',
   RoomEncryptionEventContent
 >;

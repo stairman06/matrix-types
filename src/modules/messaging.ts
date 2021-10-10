@@ -1,4 +1,4 @@
-import { EventsHolder, MatrixEventBase } from '../events';
+import { EventsHolder, MatrixEventBase, MatrixStateEventBase } from '../events';
 import { EncryptedFile } from './crypto';
 
 export type Events = EventsHolder<
@@ -201,7 +201,7 @@ export type MessageEventContent =
   | VideoContent
   | LocationContent;
 
-export type RoomNameEvent = MatrixEventBase<
+export type RoomNameEvent = MatrixStateEventBase<
   'm.room.name',
   RoomNameEventContent
 >;
@@ -210,7 +210,7 @@ export interface RoomNameEventContent {
   name: string;
 }
 
-export type RoomTopicEvent = MatrixEventBase<
+export type RoomTopicEvent = MatrixStateEventBase<
   'm.room.topic',
   RoomTopicEventContent
 >;
@@ -219,7 +219,7 @@ export interface RoomTopicEventContent {
   topic: string;
 }
 
-export type RoomAvatarEvent = MatrixEventBase<
+export type RoomAvatarEvent = MatrixStateEventBase<
   'm.room.avatar',
   RoomAvatarEventContent
 >;
@@ -229,7 +229,7 @@ export interface RoomAvatarEventContent {
   url: string;
 }
 
-export type RoomPinsEvent = MatrixEventBase<
+export type RoomPinsEvent = MatrixStateEventBase<
   'm.room.pinned_events',
   RoomPinsEventContent
 >;

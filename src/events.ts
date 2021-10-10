@@ -4,6 +4,7 @@ import * as Presence from './modules/presence';
 import * as RoomEvents from './client/rooms/events';
 import * as E2EE from './modules/e2ee/events';
 import * as Verification from './modules/e2ee/verification';
+import * as Spaces from './modules/spaces';
 
 /**
  * A holder for events
@@ -30,11 +31,17 @@ type EventHolders =
   | Presence.Events
   | RoomEvents.Events
   | E2EE.Events
-  | Verification.Events;
+  | Verification.Events
+  | Spaces.Events;
 
 export interface MatrixEventBase<T extends string, C extends any> {
   type: T;
   content: C;
+}
+
+export interface MatrixStateEventBase<T extends string, C extends any>
+  extends MatrixEventBase<T, C> {
+  state_key: string;
 }
 
 /**
@@ -43,7 +50,7 @@ export interface MatrixEventBase<T extends string, C extends any> {
  */
 export type MatrixEvent = EventHolders['all'];
 export type MatrixMessageEvent = EventHolders['message'];
-export type MatrixStateEventBase = EventHolders['state'];
+export type MatrixStateEvent = EventHolders['state'];
 
 export type MatrixEventType = MatrixEvent['type'];
 export type MatrixEventContent = MatrixEvent['content'];
@@ -55,15 +62,12 @@ export type ToDeviceEvent = MatrixEvent & {
   sender?: string;
 };
 
-export type StateEventType = MatrixStateEventBase['type'];
+export type StateEventType = MatrixStateEvent['type'];
 export type StateEventMap = {
   [t in StateEventType]: Extract<EventHolders['state'], { type: t }>;
 };
-export type StateEvent = MatrixStateEventBase & {
-  state_key: string;
-};
 
-export type StrippedStateEvent = StateEvent & {
+export type StrippedStateEvent = MatrixStateEvent & {
   sender: string;
 };
 
